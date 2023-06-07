@@ -36,7 +36,7 @@ contract NFTDutchAuction {
         require(block.number < auctionEndTime, "Auction has ended");
 
         if (_currentPrice >= reservePrice && _currentPrice >= auctionEndTime - block.number) {
-            // Bid meets both the reserve price and the time-based minimum price
+            
             nftContract.transferFrom(address(this), msg.sender, nftTokenId);
         }
 
@@ -45,6 +45,6 @@ contract NFTDutchAuction {
         uint256 updatedPrice = _currentPrice - decrementAmount;
         auctionEndTime -= offerPriceDecrement;
 
-        // Use the updatedPrice for further calculations or storage
+        
     }
 }

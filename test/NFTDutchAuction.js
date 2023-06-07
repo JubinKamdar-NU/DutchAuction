@@ -9,11 +9,11 @@ describe("NFTDutchAuction", function () {
   const offerPriceDecrement = 5;
 
   beforeEach(async function () {
-    // Deploy the ERC721 token contract
+    
     const MyToken = await ethers.getContractFactory("NFTContract");
     nftContract = await MyToken.deploy();
 
-    // Deploy the NFTDutchAuction contract
+    
     const NFTDutchAuction = await ethers.getContractFactory("NFTDutchAuction");
     nftDutchAuction = await NFTDutchAuction.deploy(
       nftContract.address,
@@ -23,7 +23,7 @@ describe("NFTDutchAuction", function () {
       offerPriceDecrement
     );
 
-    // Mint the ERC721 token to the auction contract
+    
     await nftContract.mint(nftDutchAuction.address);
   });
 
@@ -36,11 +36,11 @@ describe("NFTDutchAuction", function () {
   it("should transfer NFT when bid meets reserve price", async function () {
     await nftDutchAuction.startAuction();
 
-    // Place a bid equal to the reserve price
+    
     const bidAmount = reservePrice;
     await nftDutchAuction.bid(bidAmount);
 
-    // Check if the NFT is transferred to the bidder
+   
     const owner = await nftContract.ownerOf(ERC721TokenId);
     expect(owner).to.equal(await ethers.provider.getSigner().getAddress());
   });
@@ -48,16 +48,16 @@ describe("NFTDutchAuction", function () {
   it("should allow a bid higher than the current highest bid", async function () {
     await nftDutchAuction.startAuction();
 
-    // Convert reservePrice to BigNumber
+    
     const reservePriceBN = ethers.utils.parseEther(reservePrice.toString());
 
-    // Place a bid higher than the reserve price
+    
     const bidAmount = reservePriceBN.add(ethers.utils.parseEther("0.5"));
     await nftDutchAuction.bid(bidAmount);
   });
 
   it("should not allow bidding before the auction starts", async function () {
-    // Try to place a bid before starting the auction
+    
     const bidAmount = 150;
     await expect(nftDutchAuction.bid(bidAmount)).to.be.revertedWith("Auction not started");
   });
@@ -65,7 +65,7 @@ describe("NFTDutchAuction", function () {
   it("should not transfer NFT when bid is below the reserve price", async function () {
     await nftDutchAuction.startAuction();
 
-    // Place a bid below the reserve price
+    
     const bidAmount = reservePrice - 10;
     await nftDutchAuction.bid(bidAmount);
 
@@ -82,14 +82,14 @@ describe("NFTDutchAuction", function () {
   it("should allow a bid higher than the reserve price but below the time-based minimum price", async function () {
     await nftDutchAuction.startAuction();
   
-    // Calculate the maximum bid amount below the time-based minimum price
+    
     const maxBidAmount = reservePrice + (numBlocksAuctionOpen - 1) * offerPriceDecrement - 10;
   
-    // Place a bid within the allowed range
+   
     const bidAmount = maxBidAmount;
     await nftDutchAuction.bid(bidAmount);
   
-    // Check if the NFT is transferred to the bidder
+    
     const owner = await nftContract.ownerOf(ERC721TokenId);
     expect(owner).to.equal(await ethers.provider.getSigner().getAddress());
   });
@@ -98,23 +98,23 @@ describe("NFTDutchAuction", function () {
   it("should not allow bidding after the auction ends", async function () {
     await nftDutchAuction.startAuction();
   
-    // Fast-forward to the end of the auction
+   
     const auctionEndTime = await nftDutchAuction.auctionEndTime();
     const currentBlock = await ethers.provider.getBlockNumber();
     const blocksRemaining = auctionEndTime - currentBlock;
   
-    // Increase the block timestamp by advancing the blocks
+   
     for (let i = 0; i < blocksRemaining; i++) {
       await ethers.provider.send("evm_mine");
     }
   
-    // Try to place a bid after the auction has ended
+    
     const bidAmount = 150;
   
-    // Attempt to place the bid and expect a revert
+    
     await expect(nftDutchAuction.bid(bidAmount)).to.be.revertedWith("Auction has ended");
   
-    // Check if the NFT is still owned by the auction contract
+    
     const owner = await nftContract.ownerOf(ERC721TokenId);
     expect(owner).to.equal(nftDutchAuction.address);
   });
