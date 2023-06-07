@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for contracts/DutchAuction.sol</title>
+    <title>Code coverage report for contracts/Lock.sol</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -16,18 +16,18 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../index.html">all files</a> / <a href="index.html">contracts/</a> DutchAuction.sol
+      <a href="../index.html">all files</a> / <a href="index.html">contracts/</a> Lock.sol
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>3/3</span>
+        <span class='fraction'>5/5</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>4/4</span>
+        <span class='fraction'>6/6</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>14/14</span>
+        <span class='fraction'>7/7</span>
       </div>
     </div>
   </div>
@@ -77,11 +77,7 @@
 32
 33
 34
-35
-36
-37
-38
-39</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+35</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -91,70 +87,62 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">12×</span>
-<span class="cline-any cline-yes">12×</span>
-<span class="cline-any cline-yes">12×</span>
-<span class="cline-any cline-yes">12×</span>
-<span class="cline-any cline-yes">12×</span>
-<span class="cline-any cline-yes">12×</span>
-<span class="cline-any cline-yes">12×</span>
-<span class="cline-any cline-yes">12×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-yes">2×</span>
-<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: UNLICENSED
+pragma solidity ^0.8.9;
 &nbsp;
-contract DutchAuction {
-    address payable public seller;
-    uint256 public reservePrice;
-    uint256 public numBlocksAuctionOpen;
-    uint256 public offerPriceDecrement;
-    uint256 public initialPrice;
-    bool public auctionEnded;
-    address public highestBidder;
-    uint256 public highestBid;
+// Uncomment this line to use console.log
+// import "hardhat/console.sol";
 &nbsp;
-    constructor(
-        uint256 _reservePrice,
-        uint256 _numBlocksAuctionOpen,
-        uint256 _offerPriceDecrement
-    ) {
-        seller = payable(msg.sender);
-        reservePrice = _reservePrice;
-        numBlocksAuctionOpen = _numBlocksAuctionOpen;
-        offerPriceDecrement = _offerPriceDecrement;
-        initialPrice = reservePrice + numBlocksAuctionOpen * offerPriceDecrement;
-        auctionEnded = false;
-        highestBidder = address(0);
-        highestBid = 0;
+contract Lock {
+    uint public unlockTime;
+    address payable public owner;
+&nbsp;
+    event Withdrawal(uint amount, uint when);
+&nbsp;
+    constructor(uint _unlockTime) payable {
+        require(
+            block.timestamp &lt; _unlockTime,
+            "Unlock time should be in the future"
+        );
+&nbsp;
+        unlockTime = _unlockTime;
+        owner = payable(msg.sender);
     }
 &nbsp;
-    function bid() public payable {
-        require(!auctionEnded, "Auction closed. Sorry try in the next");
-        require(msg.value &gt;= initialPrice, "Bid doesn't match requirement.");
+    function withdraw() public {
+        // Uncomment this line, and the import of "hardhat/console.sol", to print a log in your terminal
+        // console.log("Unlock time is %o and block timestamp is %o", unlockTime, block.timestamp);
 &nbsp;
-        auctionEnded = true;
-        highestBidder = msg.sender;
-        highestBid = msg.value;
-        seller.transfer(highestBid);
+        require(block.timestamp &gt;= unlockTime, "You can't withdraw yet");
+        require(msg.sender == owner, "You aren't the owner");
+&nbsp;
+        emit Withdrawal(address(this).balance, block.timestamp);
+&nbsp;
+        owner.transfer(address(this).balance);
     }
 }
 &nbsp;</pre></td></tr>
@@ -163,7 +151,7 @@ contract DutchAuction {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue May 30 2023 14:06:31 GMT-0400 (Eastern Daylight Time)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jun 06 2023 17:48:00 GMT-0400 (Eastern Daylight Time)
 </div>
 </div>
 <script src="../prettify.js"></script>
