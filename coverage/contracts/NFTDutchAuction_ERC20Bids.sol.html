@@ -22,22 +22,22 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>7/7</span>
+        <span class='fraction'>9/9</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">60% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>6/6</span>
+        <span class='fraction'>6/10</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">75% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>3/3</span>
+        <span class='fraction'>3/4</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>16/16</span>
+        <span class='fraction'>18/18</span>
       </div>
     </div>
   </div>
@@ -99,7 +99,19 @@
 54
 55
 56
-57</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -123,70 +135,99 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">30×</span>
-<span class="cline-any cline-yes">30×</span>
-<span class="cline-any cline-yes">30×</span>
-<span class="cline-any cline-yes">30×</span>
-<span class="cline-any cline-yes">30×</span>
-<span class="cline-any cline-yes">30×</span>
-<span class="cline-any cline-yes">30×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">10×</span>
-<span class="cline-any cline-yes">9×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3×</span>
-<span class="cline-any cline-yes">3×</span>
-<span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-yes">3×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 &nbsp;
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol";
 &nbsp;
-contract NFTDutchAuction_ERC20Bids {
-    ERC721 public nftContract;
+contract NFTDutchAuction_ERC20BidsUpgrade is
+    Initializable,
+    OwnableUpgradeable,
+    UUPSUpgradeable,
+    ERC721Upgradeable
+{
+    ERC721Upgradeable public nftContract;
     uint256 public nftTokenId;
     uint256 public reservePrice;
     uint256 public numBlocksAuctionOpen;
     uint256 public offerPriceDecrement;
     uint256 public auctionEndTime;
 &nbsp;
-    IERC20 public erc20Token;
+    IERC20Upgradeable public erc20Token;
 &nbsp;
-    constructor(
+    function initialize(
         address _erc20TokenAddress,
         address _erc721TokenAddress,
         uint256 _nftTokenId,
         uint256 _reservePrice,
         uint256 _numBlocksAuctionOpen,
         uint256 _offerPriceDecrement
-    ) {
-        erc20Token = IERC20(_erc20TokenAddress);
-        nftContract = ERC721(_erc721TokenAddress);
+    ) public <span class="missing-if-branch" title="else path not taken" >E</span>initializer {
+        __Ownable_init();
+        __UUPSUpgradeable_init();
+&nbsp;
+        erc20Token = IERC20Upgradeable(_erc20TokenAddress);
+        nftContract = ERC721Upgradeable(_erc721TokenAddress);
         nftTokenId = _nftTokenId;
         reservePrice = _reservePrice;
         numBlocksAuctionOpen = _numBlocksAuctionOpen;
         offerPriceDecrement = _offerPriceDecrement;
         auctionEndTime = 0;
     }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function _authorizeUpgrade(</span>
+        address newImplementation
+    ) internal override onlyOwner {}
+&nbsp;
+    
+&nbsp;
 &nbsp;
     function startAuction() external {
         require(auctionEndTime == 0, "Auction already started");
@@ -195,16 +236,11 @@ contract NFTDutchAuction_ERC20Bids {
 &nbsp;
     function bid(uint256 currentPrice) external {
         require(auctionEndTime &gt; 0, "Auction not started");
-        require(block.number &lt; auctionEndTime, "Auction has ended");
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(block.number &lt; auctionEndTime, "Auction has ended");
 &nbsp;
-        // if (currentPrice &gt;= reservePrice &amp;&amp; block.number &gt;= auctionEndTime) {
-        //     // Check if the bidder is the current owner of the NFT
-        //     require(nftContract.ownerOf(nftTokenId) == msg.sender, "Bidder is not the current owner");
-        //     nftContract.safeTransferFrom(address(this), msg.sender, nftTokenId);
-        // }
-&nbsp;
-        uint256 blocksRemaining = auctionEndTime - block.number - 1; // Subtract 1 to account for the current block
-        uint256 decrementAmount = (offerPriceDecrement * blocksRemaining) / 1e18;
+        uint256 blocksRemaining = auctionEndTime - block.number - 1; // Subtract 1 to account
+        uint256 decrementAmount = (offerPriceDecrement * blocksRemaining) /
+            1e18;
         uint256 updatedPrice = currentPrice - decrementAmount;
         auctionEndTime = block.number + blocksRemaining;
 &nbsp;
@@ -217,7 +253,7 @@ contract NFTDutchAuction_ERC20Bids {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jun 13 2023 12:28:59 GMT-0400 (Eastern Daylight Time)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jun 13 2023 14:39:32 GMT-0400 (Eastern Daylight Time)
 </div>
 </div>
 <script src="../prettify.js"></script>
