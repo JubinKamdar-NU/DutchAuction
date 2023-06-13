@@ -36,20 +36,15 @@ contract NFTDutchAuction_ERC20Bids {
         auctionEndTime = block.number + numBlocksAuctionOpen;
     }
 
-    function bid(uint256 _currentPrice) external {
-    require(auctionEndTime > 0, "Auction not started");
-    require(block.number < auctionEndTime, "Auction has ended");
+    function bid(uint256 currentPrice) external {
+        require(auctionEndTime > 0, "Auction not started");
+        require(block.number < auctionEndTime, "Auction has ended");
 
-    if (_currentPrice >= reservePrice && block.number >= auctionEndTime) {
-    nftContract.transferFrom(address(this), msg.sender, nftTokenId);
-}
+        uint256 blocksRemaining = auctionEndTime - block.number - 1; // Subtract 1 to account for the current block
+        uint256 decrementAmount = (offerPriceDecrement * blocksRemaining) / 1e18;
+        uint256 updatedPrice = currentPrice - decrementAmount;
+        auctionEndTime = block.number + blocksRemaining;
 
-    uint256 blocksRemaining = auctionEndTime - block.number - 1; // Subtract 1 to account for the current block
-    uint256 decrementAmount = (offerPriceDecrement * blocksRemaining) / 1e18;
-    uint256 updatedPrice = _currentPrice - decrementAmount;
-    auctionEndTime = block.number + blocksRemaining;
-
-    erc20Token.transferFrom(msg.sender, address(this), updatedPrice);
-}
-
+        erc20Token.transferFrom(msg.sender, address(this), updatedPrice);
+    }
 }
